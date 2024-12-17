@@ -18,7 +18,8 @@ import java.util.Optional;
 public interface MessageRepository extends JpaRepository <Message, Long>{
 
     /*
-     * Retrieves a message using its message ID. Returns an Optional Message object
+     * Queries the database for a message using its message ID. Returns an 
+     * Optional Message object.
      */
     @Query("select u from Message u where u.messageId = ?1")
     Optional<Message> getMessageByID(@Param("messageId") int messageId);
@@ -42,7 +43,7 @@ public interface MessageRepository extends JpaRepository <Message, Long>{
     int updateMessage(String messageText, int messageId);
 
     /*
-     * Retrieves all the messages in the database posted by a specific user.
+     * Queries the database for all the messages posted by a specific user.
      * Returns a list of Message objects containing the retrieved messages.
      */
     @Query("select u from Message u where u.postedBy = ?1")
