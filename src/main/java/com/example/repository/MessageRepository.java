@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Qualifier("messages")
+
 @Repository
 public interface MessageRepository extends JpaRepository <Message, Long>{
 

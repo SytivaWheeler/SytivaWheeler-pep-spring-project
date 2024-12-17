@@ -16,7 +16,7 @@ public class AccountService {
     AccountRepository accountRepository;
 
     @Autowired
-    public AccountService(@Qualifier("accounts") AccountRepository accountRepository){
+    public AccountService(AccountRepository accountRepository){
         this.accountRepository = accountRepository;
     }
 
