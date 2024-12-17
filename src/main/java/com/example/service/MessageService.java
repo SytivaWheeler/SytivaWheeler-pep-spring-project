@@ -24,7 +24,9 @@ public class MessageService {
     }
 
     /*
-     * 
+     * Adds the message passed in the parameter to the database. If the message text 
+     * is longer than 255 characters or is empty, the method returns null. Otherwise, it
+     * returns a Message object.
      */
     public Message persistMessage(Message message){
         int postedby = message.getPostedBy();
@@ -41,11 +43,18 @@ public class MessageService {
             return null;
         }
     }
-
+    
+    /*
+     *  Returns a List of all messages in the database.
+     */
     public List<Message> getAllMessages(){
         return messageRepository.findAll();
     }
 
+    /*
+     * Retrieves a message from the database using its message ID.
+     * Returns it as a Message object if found. Returns null otherwise.
+     */
     public Message getMessageByMID(String messageid){
         int intMessageId = Integer.valueOf(messageid);
         Optional<Message> optionalMessage = messageRepository.getMessageByID(intMessageId);
@@ -56,11 +65,19 @@ public class MessageService {
         }
     }
 
+    /*
+     * Deletes a message from the database using its message id if it exists.
+     * Returns the number of rows affected.
+     */
     public int deleteMessage(String messageId){
         int intMessageId = Integer.valueOf(messageId);
         return messageRepository.deleteMessage(intMessageId);
     }
 
+    /*
+     * Updates the text of a message in the database if it exists. Returns the
+     * number of rows affected.
+     */
     public int updateMessage(String newMessageText, String messageId) {
         int intMessageId = Integer.valueOf(messageId);
         if( !(newMessageText.equals("")) && 
@@ -73,6 +90,11 @@ public class MessageService {
         
     }
 
+    /*
+     * Retrieves all the messages made by a specific user in the database using
+     * the users account ID. Returns a list of Message objects with said retrieved 
+     * messages.
+     */
     public List<Message> getAllMessagesByUser(String accountId) {
         int intAccountId = Integer.valueOf(accountId);
         return messageRepository.getAllMessagesByUser(intAccountId);

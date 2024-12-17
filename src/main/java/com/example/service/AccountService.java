@@ -21,7 +21,9 @@ public class AccountService {
     }
 
     /*
-     * 
+     * Adds the account passed in the parameter to the database.
+     * Throws a DuplicateUserException if an account with the username already exists in the
+     * database. Returns an Account object.
      */
     public Account persistAccount(Account account){
         Account checkedAccount = accountRepository.getAccountByUsername(account.getUsername());
@@ -37,7 +39,9 @@ public class AccountService {
     }
 
     /*
-     * 
+     * Checks the database for the account passed in the parameter and checks if the user entered
+     * the correct password for the account. If the username entered does not match an account and/or
+     * the password doesnt match, an UnauthorizedException is thrown.
      */
     public Account loginAttempt(Account account){
         Account attemptedAccount = accountRepository.getAccountByUsername(account.getUsername());

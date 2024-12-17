@@ -17,13 +17,15 @@ import java.util.Optional;
 public interface AccountRepository extends JpaRepository <Account, Long>{
     
     /*
-     * 
+     * Queries the database for an account that matches the username passed in the parameter.
+     * Returns an Account object.
      */
     @Query("select u from Account u where u.username = ?1")
     Account getAccountByUsername(@Param("usernameVar") String username);
 
     /*
-     * 
+     * Queries the database for an account that matches the account ID passed in the parameter.
+     * Returns an Optional<Account> object.
      */
     @Query("select u from Account u where u.accountId = ?1")
     Optional<Account> getAccountByID(@Param("accountId") int accountId);
